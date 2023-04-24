@@ -19,12 +19,11 @@ import java.util.List;
 @Setter
 public class User {
     @Id
-    @GeneratedValue
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     @Column(nullable = false, unique = true, length = 15)
-    private String userName;
+    private String nickName;
 
     @Column(nullable = false)
     private String password;
