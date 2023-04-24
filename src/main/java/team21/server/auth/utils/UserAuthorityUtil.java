@@ -9,13 +9,13 @@ import java.util.List;
 
 @Component
 public class UserAuthorityUtil {
-  private final List<GrantedAuthority> USER_ROLES = AuthorityUtils.createAuthorityList(Role.ROLE_USER.name());
+    private final List<GrantedAuthority> USER_ROLES = AuthorityUtils.createAuthorityList(Role.ROLE_USER.name());
 
-  public Role createRoles() {
-    return Role.ROLE_USER;
-  }
+    public Role createRoles() {
+        return Role.ROLE_USER;
+    }
 
-  public List<GrantedAuthority> createAuthorities(Role role) {
-    return USER_ROLES;
-  }
+    public List<GrantedAuthority> createAuthorities(Role role) {
+        return USER_ROLES;
+    }
 }

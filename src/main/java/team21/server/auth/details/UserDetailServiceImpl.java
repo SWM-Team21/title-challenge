@@ -12,14 +12,13 @@ import team21.server.repository.UserRepository;
 @Service
 @RequiredArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
-  private final UserAuthorityUtil userAuthorityUtil;
-  private final UserRepository userRepository;
+    private final UserAuthorityUtil userAuthorityUtil;
+    private final UserRepository userRepository;
 
-
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user = userRepository.findByUserName(username)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found."));
-    return new UserDetailsImpl(user, userAuthorityUtil.createAuthorities(user.getRole()));
-  }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found."));
+        return new UserDetailsImpl(user, userAuthorityUtil.createAuthorities(user.getRole()));
+    }
 }

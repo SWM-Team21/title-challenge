@@ -10,45 +10,45 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class UserDetailsImpl implements UserDetails {
-  private final User user;
-  private final List<GrantedAuthority> roles;
+    private final User user;
+    private final List<GrantedAuthority> roles;
 
-  public Long getUserId() {
-    return this.user.getUserId();
-  }
+    public Long getUserId() {
+        return this.user.getUserId();
+    }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return this.roles;
-  }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
 
-  @Override
-  public String getPassword() {
-    return this.user.getPassword();
-  }
+    @Override
+    public String getPassword() {
+        return this.user.getPassword();
+    }
 
-  @Override
-  public String getUsername() {
-    return this.user.getUserName();
-  }
+    @Override
+    public String getUsername() {
+        return this.user.getUserName();
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
