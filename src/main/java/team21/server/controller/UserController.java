@@ -11,6 +11,8 @@ import team21.server.dto.UserDto;
 import team21.server.mapper.UserMapper;
 import team21.server.service.UserService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -19,8 +21,8 @@ public class UserController {
     private final UserMapper mapper;
 
     @PostMapping("/signup")
-    public ResponseEntity signup(@RequestBody UserDto.Signup signupDto) {
+    public ResponseEntity signup(@Valid @RequestBody UserDto.Signup signupDto) {
         userService.createUser(mapper.signupToEntity(signupDto));
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
