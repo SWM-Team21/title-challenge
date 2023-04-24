@@ -11,7 +11,7 @@ import team21.server.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserAuthorityUtil userAuthorityUtil;
     private final UserRepository userRepository;
 
