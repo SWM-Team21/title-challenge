@@ -1,0 +1,39 @@
+package team21.server.domain;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "USERS")
+@Getter
+@Setter
+public class User {
+    @Id
+    @GeneratedValue
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(nullable = false, unique = true, length = 15)
+    private String userName;
+
+    @Column(nullable = false)
+    private String password;
+
+    private String imageName;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Like> likes = new ArrayList<>();
+}
