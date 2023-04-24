@@ -20,12 +20,4 @@ public class UserDto {
         @NotBlank
         private String password;
     }
-
-    @Getter
-    @Setter
-    public static class MyPage {
-        private String nickName;
-
-        private String imageName;
-    }
 }
