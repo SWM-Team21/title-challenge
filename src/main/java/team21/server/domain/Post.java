@@ -2,6 +2,7 @@ package team21.server.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import team21.server.audit.BaseEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Post {
+public class Post extends BaseEntity {
     @Id
     @GeneratedValue
     private Long postId;
@@ -32,4 +33,8 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
 }
