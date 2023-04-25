@@ -31,7 +31,7 @@ public class Post extends BaseEntity {
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
     public void addComment(Comment comment) {
