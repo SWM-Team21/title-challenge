@@ -6,9 +6,9 @@ import team21.server.domain.User;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUserId(String userId);
+    Optional<User> findByLoginId(String loginId);
 
-    boolean existsByUserId(String userId);
+    boolean existsByLoginId(String loginId);
 
     boolean existsByNickName(String nickName);
 }

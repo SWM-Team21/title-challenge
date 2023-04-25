@@ -14,7 +14,7 @@ import team21.server.auth.enums.Role;
 @Configuration
 @EnableWebSecurity(debug = true)
 public class SecurityConfig {
-    private final String ROLE_USER = Role.ROLE_USER.name();
+    private final String ROLE_USER = Role.ROLE_USER.getName();
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/post/**").hasRole(ROLE_USER)
-                .antMatchers("users/mypage/**").hasRole(ROLE_USER)
+                .antMatchers("users/image/**").hasRole(ROLE_USER)
                 .anyRequest().permitAll();
         return http.build();
     }

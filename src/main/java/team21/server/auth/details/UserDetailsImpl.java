@@ -13,7 +13,7 @@ public class UserDetailsImpl implements UserDetails {
     private final User user;
     private final List<GrantedAuthority> roles;
 
-    public String getUserId() {
+    public Long getUserId() {
         return this.user.getUserId();
     }
 
@@ -29,7 +29,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.user.getUserId();
+        return this.user.getLoginId();
     }
 
     @Override
