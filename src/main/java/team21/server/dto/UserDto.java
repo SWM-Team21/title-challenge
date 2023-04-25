@@ -11,7 +11,7 @@ public class UserDto {
     @Setter
     public static class Signup {
         @NotBlank
-        private String userId;
+        private String loginId;
 
         @NotBlank
         @Size(max = 15)

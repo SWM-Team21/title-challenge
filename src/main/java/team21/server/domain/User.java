@@ -20,8 +20,12 @@ import java.util.List;
 @Setter
 public class User {
     @Id
+    @GeneratedValue
     @Column(name = "user_id")
-    private String userId;
+    private Long userId;
+
+    @Column(nullable = false, unique = true)
+    private String loginId;
 
     @Column(nullable = false, unique = true, length = 15)
     private String nickName;

@@ -8,6 +8,8 @@ import team21.server.auth.utils.UserAuthorityUtil;
 import team21.server.domain.User;
 import team21.server.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -16,7 +18,7 @@ public class UserService {
     private final UserAuthorityUtil userAuthorityUtil;
 
     public void createUser(User user) {
-        verifyDuplicatedUserIdExists(user.getUserId());
+        verifyDuplicatedLoginIdExists(user.getLoginId());
         verifyDuplicatedNickNameExists(user.getNickName());
 
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
@@ -26,8 +28,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    private void verifyDuplicatedUserIdExists(String userId) {
-        if (userRepository.existsByUserId(userId)) {
+    private void verifyDuplicatedLoginIdExists(String userId) {
+        if (userRepository.existsByLoginId(userId)) {
             throw new BusinessLogicException("중복된 아이디입니다.");
         }
     }
