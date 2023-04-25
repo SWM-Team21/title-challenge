@@ -28,8 +28,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    private void verifyDuplicatedLoginIdExists(String userId) {
-        if (userRepository.existsByLoginId(userId)) {
+    private void verifyDuplicatedLoginIdExists(String loginId) {
+        if (userRepository.existsByLoginId(loginId)) {
             throw new BusinessLogicException("중복된 아이디입니다.");
         }
     }
