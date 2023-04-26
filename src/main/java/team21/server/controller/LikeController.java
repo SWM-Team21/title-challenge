@@ -22,7 +22,7 @@ public class LikeController {
     private final LikeService likeService;
     private final CommentService commentService;
 
-    @PostMapping("/post/{postId}")
+    @PostMapping("/{postId}")
     public ResponseEntity<?> likes(@PathVariable("postId") Long postId,
                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
         Long userId = userDetails.getUserId();
@@ -37,7 +37,7 @@ public class LikeController {
         return new ResponseEntity<>("좋아요 성공", HttpStatus.OK);
     }
 
-    @DeleteMapping("/post/{postId}")
+    @DeleteMapping("/{postId}")
     public ResponseEntity<?> unLikes(@PathVariable("postId") Long postId,
                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
         Long userId = userDetails.getUserId();

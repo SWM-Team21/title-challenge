@@ -22,7 +22,7 @@ public class CommentController {
     private final CommentService commentService;
     private final UserService userService;
 
-    @PostMapping("/comment")
+    @PostMapping("")
     public ResponseEntity<?> addComment(@Valid @RequestBody CommentDto commentDto,
                                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
@@ -39,7 +39,7 @@ public class CommentController {
         return new ResponseEntity<>(commentDto, HttpStatus.OK);
     }
 
-    @DeleteMapping("/comment/{commentId}")
+    @DeleteMapping("{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable("commentId") Long commentId) {
         commentService.deleteComment(commentId);
         return new ResponseEntity<>("댓글 삭제 성공", HttpStatus.OK);
