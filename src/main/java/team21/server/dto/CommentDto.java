@@ -12,8 +12,6 @@ public class CommentDto {
 
     private Boolean anonymous;
 
-    private Long userId;
-
     private Long postId;
 
     private String nickName;
