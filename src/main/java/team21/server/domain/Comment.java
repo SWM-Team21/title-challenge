@@ -19,15 +19,21 @@ public class Comment {
 
     private String body;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
     @OneToMany(mappedBy = "comment")
     private List<Like> likes = new ArrayList<>();
 
+    public Comment(Boolean anonymous, String body, User user, Post post) {
+        this.anonymous = anonymous;
+        this.body = body;
+        this.user = user;
+        this.post = post;
+    }
 }
