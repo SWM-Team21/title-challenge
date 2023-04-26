@@ -33,10 +33,8 @@ public class CommentController {
                 commentDto.getBody(),
                 user.getUserId(),
                 commentDto.getPostId());
-        commentDto.setId(comment.getId());
-        commentDto.setNickName(user.getNickName());
-        commentDto.setImageName(user.getImageName());
-        return new ResponseEntity<>(commentDto, HttpStatus.OK);
+
+        return new ResponseEntity<>(comment.getId(), HttpStatus.OK);
     }
 
     @DeleteMapping("{commentId}")
