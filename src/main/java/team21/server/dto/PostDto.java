@@ -12,11 +12,11 @@ import java.util.List;
 public class PostDto {
     private Long userId;
 
-    private String userImageName;
+    private byte[] userImage;
 
     private Long postId;
 
-    private String postImageName;
+    private byte[] postImage;
 
-    private List<CommentDto> comments = new ArrayList<>();
+    private List<CommentDto.Response> comments;
 }
