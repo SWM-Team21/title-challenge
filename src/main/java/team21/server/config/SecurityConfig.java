@@ -15,10 +15,15 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import team21.server.auth.enums.Role;
 import team21.server.auth.filter.JsonUsernamePasswordAuthenticationFilter;
 import team21.server.auth.handler.CustomLoginFailureHandler;
 import team21.server.auth.handler.CustomLoginSuccessHandler;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -43,6 +48,20 @@ public class SecurityConfig {
                 .antMatchers("users/image/**").hasRole(ROLE_USER)
                 .anyRequest().permitAll();
         return http.build();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOriginPatterns(List.of("https://naming-academy.vercel.app"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+        configuration.setExposedHeaders(List.of("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
