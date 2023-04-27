@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import team21.server.domain.Comment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,5 +18,5 @@ public class PostDto {
 
     private String postImageName;
 
-    private List<Comment> comments;
+    private List<CommentDto> comments = new ArrayList<>();
 }

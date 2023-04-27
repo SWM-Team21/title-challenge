@@ -21,11 +21,11 @@ public class CommentRepository {
         return em.find(Comment.class, id);
     }
 
-    public List<Comment> getCommentsOfUser(Long userId) {
+    public List<Comment> getCommentsOfPost(Long postId) {
         return em.createQuery("select c from Comment c " +
-                        "join fetch c.user u " +
-                        "where u.id = :userId", Comment.class)
-                .setParameter("userId", userId)
+                        "join fetch c.post p " +
+                        "where p.id = :postId", Comment.class)
+                .setParameter("postId", postId)
                 .getResultList();
     }
 
