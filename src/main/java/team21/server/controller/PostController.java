@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import team21.server.auth.details.UserDetailsImpl;
+import team21.server.domain.Comment;
 import team21.server.domain.Post;
 import team21.server.dto.PostDto;
 import team21.server.mapper.PostMapper;
+import team21.server.service.CommentService;
 import team21.server.service.PostService;
 
 import java.io.IOException;
@@ -29,6 +31,7 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
     private final PostMapper postMapper;
+    private final CommentService commentService;
 
     @PostMapping
     public ResponseEntity uploadPost(@RequestParam MultipartFile file,
@@ -58,6 +61,17 @@ public class PostController {
     public ResponseEntity getPostOne(@PathVariable("post-id") long postId) {
         Post post = postService.findPostById(postId);
         PostDto postDto = postMapper.entityToPostDto(post);
+
+        List<Comment> comments = commentService.findCommentsWithPost(postId);
+
+        //익명 설정 시 닉네임 변경
+        for(Comment comment : comments) {
+            if(comment.getAnonymous().equals(true)) {
+                comment.getUser().setNickName("익명");
+            }
+        }
+
+        postDto.setComments(comments);
 
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
