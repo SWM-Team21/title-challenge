@@ -18,8 +18,8 @@ import java.util.List;
 public class LikeService {
 
     private final LikeRepository likeRepository;
-    private final UserRepository userRepository;
     private final CommentRepository commentRepository;
+    private final UserService userService;
 
     public List<Like> findLikesWithUser(Long userId) {
         return likeRepository.findLikesWithUser(userId);
@@ -27,7 +27,7 @@ public class LikeService {
 
     @Transactional
     public void likes(Long userId, Long commentId) {
-        User user = userRepository.findOneById(userId);
+        User user = userService.findUserById(userId);
         Comment comment = commentRepository.findOneById(commentId);
         Like like = new Like(user, comment);
 
