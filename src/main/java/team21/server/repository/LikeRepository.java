@@ -21,11 +21,11 @@ public class LikeRepository {
         return em.find(Like.class, id);
     }
 
-    public List<Like> findLikesWithUser(Long userId) {
+    public List<Like> findLikesWithComment(Long commentId) {
         return em.createQuery("select l from Like l " +
-                        "join fetch l.user u " +
-                        "where u.id = :userId", Like.class)
-                .setParameter("userId", userId)
+                        "join fetch l.comment c " +
+                        "where c.id = :commentId", Like.class)
+                .setParameter("commentId", commentId)
                 .getResultList();
     }
 

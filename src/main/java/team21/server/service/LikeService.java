@@ -21,8 +21,8 @@ public class LikeService {
     private final CommentRepository commentRepository;
     private final UserService userService;
 
-    public List<Like> findLikesWithUser(Long userId) {
-        return likeRepository.findLikesWithUser(userId);
+    public List<Like> findLikesWithComment(Long commentId) {
+        return likeRepository.findLikesWithComment(commentId);
     }
 
     @Transactional
