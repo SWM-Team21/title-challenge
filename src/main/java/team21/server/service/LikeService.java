@@ -26,7 +26,7 @@ public class LikeService {
     }
 
     @Transactional
-    public void likes(Long userId, Long commentId) {
+    public void save(Long userId, Long commentId) {
         User user = userService.findUserById(userId);
         Comment comment = commentRepository.findOneById(commentId);
         Like like = new Like(user, comment);
@@ -35,7 +35,7 @@ public class LikeService {
     }
 
     @Transactional
-    public void unLikes(Long userId, Long commentId) {
+    public void delete(Long userId, Long commentId) {
         Like like = likeRepository.findLike(commentId, userId);
         likeRepository.deleteLike(like.getId());
     }
