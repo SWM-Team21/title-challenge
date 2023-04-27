@@ -37,4 +37,5 @@ public class UserController {
         userService.updateImage(userId, file);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
 }
