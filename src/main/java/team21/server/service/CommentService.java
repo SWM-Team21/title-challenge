@@ -11,19 +11,20 @@ import team21.server.repository.PostRepository;
 import team21.server.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final UserRepository userRepository;
-    private final PostRepository postRepository;
+    private final UserService userService;
+    private final PostService postService;
 
     @Transactional
     public Comment save(Boolean anonymous, String body, Long userId, Long postId) {
-        User user = userRepository.findUserById(userId);
-        Post post = postRepository.findPostById(postId);
+        User user = userService.findUserById(userId);
+        Post post = postService.findPostById(postId);
         Comment comment = new Comment(anonymous, body, user, post);
         post.getComments().add(comment);
         commentRepository.save(comment);
