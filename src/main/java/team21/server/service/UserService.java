@@ -56,4 +56,9 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByUserId(userId);
         return optionalUser.orElseThrow(() -> new BusinessLogicException("존재하지 않은 아이디입니다."));
     }
+
+    public byte[] getUserImage(long userId) {
+        User user = findUserById(userId);
+        return fileUtil.downloadImage(user.getImageName());
+    }
 }
