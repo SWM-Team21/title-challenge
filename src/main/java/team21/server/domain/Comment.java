@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Comment {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 

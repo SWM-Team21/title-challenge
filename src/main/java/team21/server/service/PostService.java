@@ -2,7 +2,6 @@ package team21.server.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.multipart.MultipartFile;
 import team21.server.aop.BusinessLogicException;
 import team21.server.domain.Post;
@@ -48,19 +47,20 @@ public class PostService {
     }
 
     public Post findPostById(long postId) {
-        // TODO 이미지 가져오기
         Optional<Post> optionalPost = postRepository.findById(postId);
         return optionalPost.orElseThrow(() -> new BusinessLogicException("존재하지 않은 게시글입니다."));
     }
 
     public List<Post> findAllByCreatedAtDesc() {
-        // TODO
-        return null;
+        List<Post> posts = postRepository.findAllWithFetchComments();
+        posts.sort((p1, p2) -> p2.getCreatedAt().compareTo(p1.getCreatedAt()));
+        return posts;
     }
 
     public List<Post> findAllByPopularityDesc() {
+        List<Post> posts = postRepository.findAllWithFetchComments();
         // TODO
-        return null;
+        return posts;
     }
 
 }

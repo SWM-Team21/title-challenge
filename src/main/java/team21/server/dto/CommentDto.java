@@ -31,4 +31,14 @@ public class CommentDto {
         this.body = body;
         this.likeCount = likeCount;
     }
+
+    @Getter
+    @Setter
+    public static class Response {
+        private Long commentId;
+        private String nickName;
+        private String body;
+        private Long likeCount;
+    }
+
 }
