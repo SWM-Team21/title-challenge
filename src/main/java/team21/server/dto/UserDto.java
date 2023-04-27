@@ -20,4 +20,15 @@ public class UserDto {
         @NotBlank
         private String password;
     }
+
+    @Getter
+    @Setter
+    public static class Login {
+        @NotBlank
+        private String loginId;
+
+        @NotBlank
+        private String password;
+    }
+
 }

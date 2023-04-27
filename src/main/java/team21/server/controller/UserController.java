@@ -3,15 +3,19 @@ package team21.server.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import team21.server.auth.details.UserDetailsImpl;
 import team21.server.dto.UserDto;
 import team21.server.mapper.UserMapper;
 import team21.server.service.UserService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/users")
@@ -26,4 +30,12 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping("/image")
+    public ResponseEntity updateUserImage(@Valid @RequestBody MultipartFile file,
+                                          @AuthenticationPrincipal UserDetailsImpl principal) throws IOException {
+        long userId = principal.getUserId();
+        userService.updateImage(userId, file);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
 }
