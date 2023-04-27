@@ -20,14 +20,14 @@ public class FileUtil {
 
     public String uploadUserImage(MultipartFile file, long userId) throws IOException {
         String imageName = file.getOriginalFilename();
-        file.transferTo(new File(userImagePath + LocalDateTime.now() + '_' + userId + '-' + imageName));
+        file.transferTo(new File(userImagePath + userId + '-' + imageName));
 
         return imageName;
     }
 
     public String uploadPostImage(MultipartFile file, long userId) throws IOException {
         String imageName = file.getOriginalFilename();
-        file.transferTo(new File(postImagePath + LocalDateTime.now() + '_' + userId + '-' + imageName));
+        file.transferTo(new File(postImagePath + userId + '-' + imageName));
 
         return imageName;
     }
