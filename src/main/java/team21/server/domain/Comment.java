@@ -1,6 +1,7 @@
 package team21.server.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Comment {
 
     @Id @GeneratedValue
@@ -19,15 +21,21 @@ public class Comment {
 
     private String body;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
     @OneToMany(mappedBy = "comment")
     private List<Like> likes = new ArrayList<>();
 
+    public Comment(Boolean anonymous, String body, User user, Post post) {
+        this.anonymous = anonymous;
+        this.body = body;
+        this.user = user;
+        this.post = post;
+    }
 }

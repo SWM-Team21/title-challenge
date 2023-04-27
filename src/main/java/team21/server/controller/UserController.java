@@ -25,4 +25,5 @@ public class UserController {
         userService.createUser(mapper.signupToEntity(signupDto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
 }
