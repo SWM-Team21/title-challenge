@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Component
 public class FileUtil {
@@ -17,16 +18,16 @@ public class FileUtil {
     private String postImagePath;
 
 
-    public String uploadUserImage(MultipartFile file) throws IOException {
+    public String uploadUserImage(MultipartFile file, long userId) throws IOException {
         String imageName = file.getOriginalFilename();
-        file.transferTo(new File(userImagePath + imageName));
+        file.transferTo(new File(userImagePath + LocalDateTime.now() + '_' + userId + '-' + imageName));
 
         return imageName;
     }
 
-    public String uploadPostImage(MultipartFile file) throws IOException {
+    public String uploadPostImage(MultipartFile file, long userId) throws IOException {
         String imageName = file.getOriginalFilename();
-        file.transferTo(new File(postImagePath + imageName));
+        file.transferTo(new File(postImagePath + LocalDateTime.now() + '_' + userId + '-' + imageName));
 
         return imageName;
     }

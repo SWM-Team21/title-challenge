@@ -46,7 +46,7 @@ public class UserService {
 
     public void updateImage(long userId, MultipartFile file) throws IOException {
         User user = findUserById(userId);
-        String imageName = fileUtil.uploadUserImage(file);
+        String imageName = fileUtil.uploadUserImage(file, userId);
         user.setImageName(imageName);
 
         userRepository.save(user);
