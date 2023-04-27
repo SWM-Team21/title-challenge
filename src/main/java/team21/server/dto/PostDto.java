@@ -17,5 +17,5 @@ public class PostDto {
 
     private String postImageName;
 
-    private List<Comment> comments;
+    private List<CommentDto> comments;
 }
