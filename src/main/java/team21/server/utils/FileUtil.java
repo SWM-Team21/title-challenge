@@ -29,8 +29,8 @@ public class FileUtil {
     }
 
     public String uploadPostImage(MultipartFile file, long userId) throws IOException {
-        String imageName = file.getOriginalFilename();
-        file.transferTo(new File(postImagePath + userId + '-' + imageName));
+        String imageName = postImagePath + userId + '-' + file.getOriginalFilename();
+        file.transferTo(new File(imageName));
 
         return imageName;
     }
