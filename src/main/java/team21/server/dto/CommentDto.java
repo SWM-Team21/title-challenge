@@ -23,4 +23,12 @@ public class CommentDto {
 
     private Long likeCount;
 
+    public CommentDto(Boolean anonymous, Long postId, String nickName, String imageName, String body, Long likeCount) {
+        this.anonymous = anonymous;
+        this.postId = postId;
+        this.nickName = nickName;
+        this.imageName = imageName;
+        this.body = body;
+        this.likeCount = likeCount;
+    }
 }
