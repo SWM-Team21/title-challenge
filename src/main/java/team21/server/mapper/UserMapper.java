@@ -9,4 +9,7 @@ import team21.server.dto.UserDto;
 public interface UserMapper {
     @Mapping(target = "userId", ignore = true)
     User signupToEntity(UserDto.Signup signupDto);
+
+    @Mapping(target = "nickName", source = "nickName")
+    UserDto.MyPage entityToMyPage(User user);
 }

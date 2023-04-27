@@ -31,4 +31,10 @@ public class UserDto {
         private String password;
     }
 
+    @Getter
+    @Setter
+    public static class MyPage {
+        private String nickName;
+        private byte[] image;
+    }
 }
